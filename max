@@ -8,10 +8,10 @@
 			   if(macd1>0)
 			   {
 		
-				   order("ABB", 10);
+				   order("EUR.USD", 10);
 			   }
 			   else
-				   order("ABB", -10);
+				   order("EUR.USD", -10);
 		
 			}
 		
@@ -19,7 +19,7 @@
 			public void initialize()
 			{
 		
-				 talib_init("macd1","macd", "12", "26","9", "ABB", "close" );
+				 talib_init("macd1","macd", "12", "26","9", "EU0009652759", "close" );
 		
 		
 			}
