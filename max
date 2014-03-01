@@ -19,7 +19,7 @@
 			public void initialize()
 			{
 		
-				 talib_init("macd1","macd", "12", "26","9", "EU0009652759", "close" );
+				 talib_init("macd1","macd", "12", "26","9", "ABB", "close" );
 		
 		
 			}
