@@ -8,10 +8,10 @@
 			   if(macd1>0)
 			   {
 		
-				   order("EUR.USD", 10);
+				   order("ABB", 10);
 			   }
 			   else
-				   order("EUR.USD", -10);
+				   order("ABB", -10);
 		
 			}
 		
