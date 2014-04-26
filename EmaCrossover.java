@@ -27,8 +27,8 @@ public class EmaCrossover extends Strategy {
         public void initialize(Context context)
         {
 
-                        talib_init("ma", "ma3", "3","Ema", symbol, "close" );
-                        talib_init("ma", "ma5", "5","Ema", symbol, "close" );
+                        initTALib("ma", "ma3", "3","Ema", symbol, "close" );
+                        initTALib("ma", "ma5", "5","Ema", symbol, "close" );
 
                       //  talib_init("lookback", "lma5",  "5", "ma5");
 
@@ -69,8 +69,8 @@ public class EmaCrossover extends Strategy {
                 lma5= ma5;// talib_data("lma5");
                 lma3= ma3;//talib_data("lma3");
 
-                ma3 = talib_data("ma3");
-                ma5 = talib_data("ma5");
+                ma3 = getData("ma3");
+                ma5 = getData("ma5");
 
 
 
