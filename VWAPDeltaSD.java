@@ -65,11 +65,26 @@ public class VWAPDeltaSD extends Strategy {
                     
                 //Open Position VWAP + SD
                 if(data.close > vwap + sd){
-                    
+                    log("openpositions: "+getPosition(symbol));
+
+                    if(getPosition(symbol) > 0){
+                        closeAllPositions(symbol);
+
+                    }
+                    log("ID: "+order(OrderType.Market,symbol, -150));
                 }
            
             
                 //Close Position VWAP - SD
+                 if(data.close > vwap - sd){
+                    log("openpositions: "+getPosition(symbol));
+
+                    if(getPosition(symbol) < 0){
+                        closeAllPositions(symbol);
+
+                    }
+                    log("ID: "+order(OrderType.Market,symbol, 150));
+                }
             }
 
             
