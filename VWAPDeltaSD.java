@@ -64,7 +64,7 @@ public class VWAPDeltaSD extends Strategy {
                     
                     
                 //Open Position VWAP + SD
-                if(data.close > vwap + sd){
+                if(data.close > vwap + stddev){
                     log("openpositions: "+getPosition(symbol));
 
                     if(getPosition(symbol) > 0){
@@ -76,7 +76,7 @@ public class VWAPDeltaSD extends Strategy {
            
             
                 //Close Position VWAP - SD
-                 if(data.close > vwap - sd){
+                 if(data.close > vwap - stddev){
                     log("openpositions: "+getPosition(symbol));
 
                     if(getPosition(symbol) < 0){
