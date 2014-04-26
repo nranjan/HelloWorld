@@ -16,7 +16,7 @@ public class EmaCrossover extends Strategy {
         // This is for trending market
         boolean flag = false;
 
-        String symbol = "RELIANCE";
+        String symbol = "INFY";
         double ma3, ma5, lma5, lma3;
         /*
 
