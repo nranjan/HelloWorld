@@ -27,30 +27,25 @@ public class EmaCrossover extends Strategy {
         public void initialize(Context context)
         {
 
-                        initTALib("ma", "ma3", "3","Ema", symbol, "close" );
-                        initTALib("ma", "ma5", "5","Ema", symbol, "close" );
+            initTALib("ma", "ma3", "3","Ema", symbol, "close" );
+            initTALib("ma", "ma5", "5","Ema", symbol, "close" );
+            context.setDataFrequency(1, Context.Frequency.DAY);
 
-                      //  talib_init("lookback", "lma5",  "5", "ma5");
+            context.setSymbols(symbol);
 
-                       // talib_init("lookback", "lma3",  "5", "ma3");
-                        context.setDataFrequency(1, Context.Frequency.DAY);
+            context.setPortfolioValue(BigDecimal.valueOf(150000));
+            context.setDataType(Event.Type.BAR);
 
-                        context.setSymbols(symbol);
-                        //context.setDataURL("https://s3-ap-southeast-1.amazonaws.com/breezetrader-test/EU0009652759.csv");
+            context.setStartDate("01-01-2011");
+            context.setEndDate("31-12-2013");
 
-                        context.setPortfolioValue(BigDecimal.valueOf(150000));
-                        context.setDataType(Event.Type.BAR);
+            log("Initialized");
+            lma3 =0;
 
-                        context.setStartDate("01-01-2011");
-                        context.setEndDate("31-12-2013");
+            lma5 =0;
+            ma3 = 0;
 
-                        log("Initialized");
-                        lma3 =0;
-
-                        lma5 =0;
-                        ma3 = 0;
-
-                        ma5 = 0;
+            ma5 = 0;
 
         }
 
@@ -66,42 +61,42 @@ public class EmaCrossover extends Strategy {
         public void onEvent(Object object)
 
         {
-                lma5= ma5;// talib_data("lma5");
-                lma3= ma3;//talib_data("lma3");
+            lma5= ma5;// talib_data("lma5");
+            lma3= ma3;//talib_data("lma3");
 
-                ma3 = getData("ma3");
-                ma5 = getData("ma5");
-
-
+            ma3 = getData("ma3");
+            ma5 = getData("ma5");
 
 
 
-                if(ma3>ma5 && lma3<= lma5)
-                {
-                    log("openpositions: "+getPosition(symbol));
-
-                    if(getPosition(symbol) < 0){
-                        closeAllPositions(symbol);
-
-                    }
-                    log("ID: "+order(OrderType.Market,symbol, 150));
 
 
-                        
+            if(ma3>ma5 && lma3<= lma5)
+            {
+                log("openpositions: "+getPosition(symbol));
+
+                if(getPosition(symbol) < 0){
+                    closeAllPositions(symbol);
 
                 }
-                if(ma3<ma5 && lma3>= lma5)
-                {
+                log("ID: "+order(OrderType.Market,symbol, 150));
 
-                    log("openpositions: "+getPosition(symbol));
-                    if(getPosition(symbol) > 0){
 
-                        closeAllPositions(symbol);
-                    }
+                    
 
-                    //log("ID: "+order(OrderType.Market,symbol, -75));
+            }
+            if(ma3<ma5 && lma3>= lma5)
+            {
 
+                log("openpositions: "+getPosition(symbol));
+                if(getPosition(symbol) > 0){
+
+                    closeAllPositions(symbol);
                 }
+
+                //log("ID: "+order(OrderType.Market,symbol, -75));
+
+            }
 
 
         }
