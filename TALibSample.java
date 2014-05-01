@@ -22,19 +22,19 @@ public class TALibSample extends Strategy {
 	{	
 	    // See below on sample of how to use technical analysis functions
 	    // such as moving averages, 
-	    
+		    
 	    initTALib("ma", "sma3", "3","Sma", symbol, "close" );
-        initTALib("ma", "ema5", "5","Ema", symbol, "close" );
-		initTALib("macd","macd1", "12", "26","9", symbol, "close" );
-		initTALib("rsi","rsi1", "12", symbol, "close" );
+            initTALib("ma", "ema5", "5","Ema", symbol, "close" );
+            initTALib("macd","macd1", "12", "26","9", symbol, "close" );
+            initTALib("rsi","rsi1", "12", symbol, "close" );
 		
 		
-		context.setDataFrequency(2, Context.Frequency.WEEK);
-		context.setSymbols(symbol);
-		context.setPortfolioValue(BigDecimal.valueOf(100000));
-		context.setDataType(Event.Type.BAR);
-		context.setStartDate("03-9-2012");
-		context.setEndDate("31-10-2012");
+	    context.setDataFrequency(2, Context.Frequency.WEEK);
+	    context.setSymbols(symbol);
+	    context.setPortfolioValue(BigDecimal.valueOf(100000));
+	    context.setDataType(Event.Type.BAR);
+	    context.setStartDate("03-9-2012");
+	    context.setEndDate("31-10-2012");
 	}
 	
 	/*
