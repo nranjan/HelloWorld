@@ -23,8 +23,8 @@ public class TALibSample extends Strategy {
 	    // See below on sample of how to use technical analysis functions
 	    // such as moving averages, 
 	    
-		initTALib("macd","macd1", "12", "26","9", symbol, "currentValueDouble" );
-		initTALib("rsi","rsi1", "12", "EU0009652759", "currentValueDouble" );
+		initTALib("macd","macd1", "12", "26","9", symbol, "close" );
+		initTALib("rsi","rsi1", "12", "EU0009652759", "close" );
 		
 		
 		context.setDataFrequency(2, Context.Frequency.WEEK);
