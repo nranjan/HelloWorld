@@ -35,7 +35,7 @@ public class TALibSample extends Strategy {
 	    context.setPortfolioValue(BigDecimal.valueOf(100000));
 	    context.setDataType(Event.Type.BAR);
 	    context.setStartDate("03-9-2012");
-	    context.setEndDate("31-10-2012");
+	    context.setEndDate("31-10-2013");
 	}
 	
 	/*
