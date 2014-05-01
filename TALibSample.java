@@ -24,7 +24,7 @@ public class TALibSample extends Strategy {
 	    // such as moving averages, 
 	    
 		initTALib("macd","macd1", "12", "26","9", symbol, "close" );
-		initTALib("rsi","rsi1", "12", "EU0009652759", "close" );
+		initTALib("rsi","rsi1", "12", symbol, "close" );
 		
 		
 		context.setDataFrequency(2, Context.Frequency.WEEK);
