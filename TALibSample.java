@@ -23,6 +23,8 @@ public class TALibSample extends Strategy {
 	    // See below on sample of how to use technical analysis functions
 	    // such as moving averages, 
 	    
+	    initTALib("ma", "sma3", "3","Sma", symbol, "close" );
+        initTALib("ma", "ema5", "5","Ema", symbol, "close" );
 		initTALib("macd","macd1", "12", "26","9", symbol, "close" );
 		initTALib("rsi","rsi1", "12", symbol, "close" );
 		
@@ -43,17 +45,21 @@ public class TALibSample extends Strategy {
 	
 	public void onEvent(Object object)
 	{
+	    double sma3 = getData("sma3");
+		double ema5 = getData("ema5");
 		double macd1 = getData("macd1" , "macd");
 		double macd1Hist = getData("macd1" , "macdhist");
 		double macd1Sig = getData("maccd1","macdsig");
 		double rsi1 = getData("rsi1");
 		
-		
 		// See the output of this in the Logs tab
 		
-		log("macd1: "+macd1);
-		log("macd1hist: "+macd1Hist);
-		log("macd1sig: "+macd1Sig);
+		log("sma3" + sma3);
+		log("ema5" + ema5);
+		log("macd1: " + macd1);
+		log("macd1hist: " + macd1Hist);
+		log("macd1sig: " + macd1Sig);
+		log("rsi1: " + rsi1);
 		
 		
 	}
