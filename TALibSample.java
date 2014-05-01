@@ -55,8 +55,8 @@ public class TALibSample extends Strategy {
 		
 		// See the output of this in the Logs tab
 		
-		log("sma3" + sma3);
-		log("ema5" + ema5);
+		log("sma3: " + sma3);
+		log("ema5: " + ema5);
 		log("macd1: " + macd1);
 		log("macd1hist: " + macd1Hist);
 		log("macd1sig: " + macd1Sig);
