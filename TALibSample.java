@@ -21,7 +21,8 @@ public class TALibSample extends Strategy {
 	public void initialize(Context context)
 	{	
 	    // See below on sample of how to use technical analysis functions
-	    // such as moving averages, 
+	    // such as moving averages, moving average convergence / divergence
+	    // relative strength index, etc
 		    
 	    initTALib("ma", "sma3", "3","Sma", symbol, "close" );
             initTALib("ma", "ema5", "5","Ema", symbol, "close" );
