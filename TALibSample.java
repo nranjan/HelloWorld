@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+
 import com.breezetrader.Context;
 import com.breezetrader.Event;
 import com.breezetrader.OrderType;
@@ -19,16 +20,19 @@ public class TALibSample extends Strategy {
 	*/
 	public void initialize(Context context)
 	{	
-			initTALib("macd","macd1", "12", "26","9", symbol, "currentValueDouble" );
-			initTALib("rsi","rsi1", "12", "EU0009652759", "currentValueDouble" );
-			
-			
-			context.setDataFrequency(2, Context.Frequency.WEEK);
-			context.setSymbols(symbol);
-			context.setPortfolioValue(BigDecimal.valueOf(100000));
-			context.setDataType(Event.Type.BAR);
-			context.setStartDate("03-9-2012");
-			context.setEndDate("31-10-2012");
+	    // See below on sample of how to use technical analysis functions
+	    // such as moving averages, 
+	    
+		initTALib("macd","macd1", "12", "26","9", symbol, "currentValueDouble" );
+		initTALib("rsi","rsi1", "12", "EU0009652759", "currentValueDouble" );
+		
+		
+		context.setDataFrequency(2, Context.Frequency.WEEK);
+		context.setSymbols(symbol);
+		context.setPortfolioValue(BigDecimal.valueOf(100000));
+		context.setDataType(Event.Type.BAR);
+		context.setStartDate("03-9-2012");
+		context.setEndDate("31-10-2012");
 	}
 	
 	/*
@@ -44,6 +48,8 @@ public class TALibSample extends Strategy {
 		double macd1Sig = getData("maccd1","macdsig")
 		double rsi1 = getData("rsi1");
 		
+		
+		// See the output of this in the Logs tab
 		
 		log("macd1: "+macd1);
 		log("macd1hist: "+macd1Hist);
