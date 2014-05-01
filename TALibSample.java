@@ -30,7 +30,7 @@ public class TALibSample extends Strategy {
             initTALib("rsi","rsi1", "12", symbol, "close" );
 		
 		
-	    context.setDataFrequency(2, Context.Frequency.WEEK);
+	    context.setDataFrequency(2, Context.Frequency.DAY);
 	    context.setSymbols(symbol);
 	    context.setPortfolioValue(BigDecimal.valueOf(100000));
 	    context.setDataType(Event.Type.BAR);
@@ -50,7 +50,7 @@ public class TALibSample extends Strategy {
 		double ema5 = getData("ema5");
 		double macd1 = getData("macd1" , "macd");
 		double macd1Hist = getData("macd1" , "macdhist");
-		double macd1Sig = getData("maccd1","macdsig");
+		double macd1Sig = getData("maccd1","macdsignal");
 		double rsi1 = getData("rsi1");
 		
 		// See the output of this in the Logs tab
