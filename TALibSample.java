@@ -45,7 +45,7 @@ public class TALibSample extends Strategy {
 	{
 		double macd1 = getData("macd1" , "macd");
 		double macd1Hist = getData("macd1" , "macdhist");
-		double macd1Sig = getData("maccd1","macdsig")
+		double macd1Sig = getData("maccd1","macdsig");
 		double rsi1 = getData("rsi1");
 		
 		
