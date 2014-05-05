@@ -4,7 +4,7 @@ import com.breezetrader.Context;
 import com.breezetrader.Event;
 import com.breezetrader.OrderType;
 import com.breezetrader.Strategy;
-import com.breezetrader.Bar;
+import com.breezetrader.Tick;
 /*
 *  This is a sample strategy intended to get you started.
 *  For more details on the APIs and usage please visit 
@@ -13,106 +13,67 @@ import com.breezetrader.Bar;
 */
 public class TALibSample extends Strategy {
 
+	String symbol = "RELIANCE";
+	/*
+	*  initialize your context, 
+	*  technical indicators other variables
+	*/
+	public void initialize(Context context)
+	{	
+	    // See below on sample of how to use technical analysis functions
+	    // such as moving averages, moving average convergence / divergence
+	    // relative strength index, etc
 
-        boolean flag = false;
+	    initTALib("ma", "sma3", "3","Sma", symbol, "close" );
+	    initTALib("ma", "ema5", "5","Ema", symbol, "close" );
+	    initTALib("macd","macd1", "12", "26","9", symbol, "close" );
+	    initTALib("rsi","rsi1", "12", symbol, "close" );
+	    initTALib("adx","adx1", "5", symbol );//initialize adx
+	    initTALib("atr","atr1", "5", symbol );//initialize atr
+	    initTALib("cci","cci1", "5", symbol );//initialize cci
+	    initTALib("sar","sar1", "0.02", "0.2", symbol );//initialize parabolic sar
 
-        String symbol = "NIFTYBEES";
-	    String isin = "NIFTYBEES";
-        double sma10, sma20, lsma10, lsma20;
-        /*
+	    context.setDataFrequency(2, Context.Frequency.DAY);
+	    context.setSymbols(symbol);
+	    context.setPortfolioValue(BigDecimal.valueOf(100000));
+	    context.setDataType(Event.Type.BAR);
+	    context.setStartDate("03-9-2012");
+	    context.setEndDate("31-10-2013");
+	}
 
-        *  initialize your context,
-        *  technical indicators other variables
+	/*
+	*  onEvent is the callback when a market event happens. 
+	*  The behaviour of how this is called depends on the context 
+	*  object you initialized in initialize(Context context) 
+	*/
 
-        */
-        public void initialize(Context context)
-        {
-
-		initTALib("ma","ma1", "12", "Sma" ,isin, "currentValueDouble" ); //initailize moving avaerage
-		initTALib("macd","macd1", "12", "26","9", isin, "currentValueDouble" );//initialize macd
-		initTALib("rsi","rsi1", "12", isin, "currentValueDouble" );//initialize rsi
-		initTALib("bollinger", "bband1",  "20", "2", isin,  "close"); //initialize bollinger
-		initTALib("lookback", "lbmacd1",  "macd1", "2",  "macdhist");// initialize lookback for a macdhist of macd1 variable
-		initTALib("lookback", "lbrsi1",  "rsi1", "2");// initialize lookback for rsi1 variable
-		initTALib("lookback", "lbisin", isin, "2", "close");//lookback a security's close value
-		initTALib("stochF", "stochF1", "14","2", isin, "close");//initialize Fast Stochastic oscillator
-		initTALib("stoch", "stoch1", "14","2","2", isin, "close");//initialize Full Stochastic Oscillator
-		initTALib("vwap", "vwap1", isin); //initialize vwap of a security
-		initTALib("adx","adx1", "5", isin );//initialize adx
-		initTALib("atr","atr1", "5", isin );//initialize atr
-		initTALib("cci","cci1", "5", isin );//initialize cci
-		initTALib("sar","sar1", "0.02", "0.2", isin );//initialize parabolic sar
-		context.setDataFrequency(1, Context.Frequency.DAY);
-		context.setSymbols(isin);
-		
-		context.setPortfolioValue(BigDecimal.valueOf(150000));
-		context.setDataType(Event.Type.BAR);
-		
-		context.setStartDate("01-01-2011");
-		context.setEndDate("31-12-2013");
-
-        }
-
-
-        /*
-        *  onEvent is the callback when a market event happens.
-
-        *  The behaviour of how this is called depends on the context
-        *  object you intialized in intialize(Context context)
-
-        */
-
-        public void onEvent(Object object)
-
-        {
-		if(object instanceof Bar)
-		{
-			Bar bar = ((Bar)object);
-			String stream = bar.streamName;
-			//log("StreamName: "+stream);
-			//log("Bar : "+ bar.open +", "+ bar.high+ ", "+ bar.low + ", "+ bar.close +", "+ bar.volume + ", "+ bar.dateTime);
-		}
-		double ma1 =  getData("ma1" );//read data of movingaverage variable
-		double macd1 =  getData("macd1" , "macd");//read data of macd variable for macd component
-		double macd1Hist = getData("macd1" , "macdhist");//read data of macd for macdhist component
-		double bband1u = getData("bband1", "realupperband");//read data of bollinger upperband
-		double bband1m = getData("bband1", "realmiddleband");//read data bollinger middleband
-		double bband1l = getData("bband1", "reallowerband");//read data bollinger lowerband
-		double rsi1 = getData("rsi1");//read data of rsi variable 
-		double lbrsi1 = getData("lbrsi1");//read data of lookback rsi variable
-		double vwap1 =getData("vwap1");//read data vwap variable
-		double lbmacd1 =getData("lbmacd1");//read data lookback of macd
-		double lbisin= getData("lbisin");//read data of lookback of security
-		double stochF1K = getData("stochF1", "fastk");//read data of stochstic fast oscillator fastk value
-		double stochF1D = getData("stochF1", "fastd");//read data of stochstic fast oscillator fastd value
-		double stoch1K = getData("stoch1", "slowk");//read data of stochstic full oscillator slowk value
-		double stoch1D = getData("stoch1", "slowd");//read data of stochstic full oscillator slowd value
+	public void onEvent(Object object)
+	{
+	    	double sma3 = getData("sma3");
+		double ema5 = getData("ema5");
+		double macd1 = getData("macd1" , "macd");
+		double macd1Hist = getData("macd1" , "macdhist");
+		double macd1Sig = getData("maccd1","macdsig");
+		double rsi1 = getData("rsi1");
 		double adx1 = getData("adx1");//read data of adx variable
 		double atr1 = getData("atr1");//read data of  atr variable
 		double cci1 = getData("cci1");//read data of cci variable
 		double sar1 = getData("sar1");//read data of probabilstic SAR variables
 		
-		//Log values for reference
-		log("test*****************************************************************");
-		log("ma1 = " +adx1);
-		log("macd1= "+macd1Hist);
-		log("rsi1 = "+rsi1);
-		log("bband1u =" + bband1u);
-		log("bband1m =" + bband1m);
-		log("bband1l =" + bband1l);
-		log("lookback macd1= "+ lbmacd1);
-		log("lbrsi1 = "+lbrsi1);
-		log("lbisin = "+lbisin);
-		log("stochF1K = "+stochF1K);
-		log("stochF1D = "+stochF1D);
-		log("stoch1K = "+stoch1K);
-		log("stoch1D = "+stoch1D);
-		log("vwap= "+ vwap1);
+		// See the output of this in the Logs tab
+
+		log("sma3: " + sma3);
+		log("ema5: " + ema5);
+		log("macd1: " + macd1);
+		log("macd1hist: " + macd1Hist);
+		log("macd1sig: " + macd1Sig);
+		log("rsi1: " + rsi1);
 		log("adx1 = " +adx1);
 		log("atr1 = " +atr1);
 		log("cci1 = " +cci1);
 		log("sar1 = " +sar1);
-        }
 
+
+	}
 
 }
