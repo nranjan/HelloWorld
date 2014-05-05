@@ -11,7 +11,7 @@ import com.breezetrader.Bar;
 *  http://docs.breezetrader.com
 *
 */
-public class TaLibTest extends Strategy {
+public class TALibSample extends Strategy {
 
 
         boolean flag = false;
