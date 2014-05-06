@@ -49,7 +49,7 @@ public class TALibSample extends Strategy {
 
 	public void onEvent(Object object)
 	{
-	    	double sma3 = getData("sma3");
+	    double sma3 = getData("sma3");
 		double ema5 = getData("ema5");
 		double macd1 = getData("macd1" , "macd");
 		double macd1Hist = getData("macd1" , "macdhist");
