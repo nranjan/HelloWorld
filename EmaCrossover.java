@@ -79,7 +79,7 @@ public class EmaCrossover extends Strategy {
                     closeAllPositions(symbol);
 
                 }
-                log("ID: "+order(OrderType.Market,symbol, 150));
+                log("ID: "+order(OrderType.Stop,symbol, 150));
 
 
                     
